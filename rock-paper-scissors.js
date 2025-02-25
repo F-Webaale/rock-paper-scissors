@@ -28,7 +28,7 @@ function getComputerChoice(choice) {
 
 function getHumanChoice(yourInput) {
     
-    yourInput = prompt("*SELECT*   rock, paper or scissors ");
+    yourInput = prompt("*SELECT*   rock, paper or scissors ").toLowerCase();
 
     if (yourInput === "rock") {
         return "rock";
@@ -56,12 +56,17 @@ let computerScore = 0;
 // Increment the side that has won : Print value and output "You win! Scissors beats paper."
 
 function playRound(humanChoice, computerChoice) {
+
+    humanChoice = getHumanChoice();
+    computerChoice = getComputerChoice();
+
     // choices picked
-    console.log(`Computer choice: ${getComputerChoice()}`);
-    console.log(`Your choice: ${getHumanChoice()}`);
+    console.log(`Computer choice: ${computerChoice}`);
+    console.log(`Your choice: ${humanChoice}`);
 
     if (humanChoice === computerChoice) {
         console.log("Its a draw");
+        return "Draw";
     }
 
     if ((humanChoice === "rock" && computerChoice === "scissors") || 
@@ -70,12 +75,50 @@ function playRound(humanChoice, computerChoice) {
     ) {
         console.log(`You win! ${humanChoice} beats ${computerChoice}.`);
         console.log(`Your score: ${++humanScore}`);
+        return "Human";
     }
-
     else {
         console.log(`You lose! ${computerChoice} beats ${humanChoice}.`)
         console.log(`Computer score: ${++computerScore}`);
+        return "Computer";
     }
+
 }
-playRound(getHumanChoice(), getComputerChoice());
+
+console.log("ROUND 1")
+playRound();
+
+// Play 5 rounds of the game
+// Declare a funcion: playGame;
+// The function needs to call playround 5 times
+
+function playGame() {
+    
+    console.log("ROUND 2");
+    playRound();
+
+    console.log("ROUND 3");
+    playRound()
+
+    console.log("ROUND 4");
+    playRound()
+
+    console.log("ROUND 5");
+    playRound()
+}
+
+playGame();
+
+console.log(
+    `FINAL SCORE /n Your score: ${humanScore} Computer score:${computerScore}`
+)
+
+if (humanScore > computerScore) {
+        console.log("You win");
+}
+else {
+    console.log("Computer Wins! Try again, next time");
+}
+
+
 

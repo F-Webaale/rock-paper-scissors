@@ -26,7 +26,7 @@ function getComputerChoice(choice) {
 // If number from range is selected, output option is displayed.
 // If number is out of range, display "selection out of range"
 
-function getHumanChoice(yourInput) {
+/*function getHumanChoice(yourInput) {
     
     yourInput = prompt("*SELECT*   rock, paper or scissors ").toLowerCase();
 
@@ -42,9 +42,32 @@ function getHumanChoice(yourInput) {
     else {
         return "Your selection is out of range!";
     }
+}*/
+
+const buttons = document.querySelector("#btns");
+
+function getHumanChoice(event){
+    let target = event.target;
+    switch(target.id) {
+        case "rock":
+            console.log("rock");
+            break;
+        
+        case "paper":
+            console.log("paper");
+            break;
+
+        case "scissors":
+            console.log("scissors");
+            break;
+    }
 }
 
 
+buttons.addEventListener("click", getHumanChoice);
+
+
+/*
 // Declare score player variables.
 let humanScore = 0;
 let computerScore = 0;
@@ -121,4 +144,4 @@ else {
 }
 
 
-
+*/

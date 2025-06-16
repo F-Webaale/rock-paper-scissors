@@ -1,79 +1,5 @@
 console.log("Hello World!");
 /*
-// Function should return "paper" or "rock" or "scissors"
-// Fuction for computers choice is random
-// let choice range between 0, 1 and 2
-// If choice is 0=rock, 1=paper, 2=scissors
-
-function getComputerChoice(choice) {
-
-    choice = Math.floor(Math.random() * 3);
-
-    if (choice === 0) {
-        computerChoice = "rock";
-    }
-    else if (choice === 1) {
-        computerChoice = "paper";
-    }
-    else {
-        computerChoice = "scissors";
-    }
-    printCon.textContent = `Computers choice: ${computerChoice}`;
-}
-
-
-// Prompt human to input choice; Display range of choices for selection
-// choice will be in string format , convert to number
-// If number from range is selected, output option is displayed.
-// If number is out of range, display "selection out of range"
-
-/*function getHumanChoice(yourInput) {
-    
-    yourInput = prompt("*SELECT*   rock, paper or scissors ").toLowerCase();
-
-    if (yourInput === "rock") {
-        return "rock";
-    }
-    else if (yourInput === "paper") {
-        return "paper";
-    }
-    else if (yourInput === "scissors") {
-        return "scissors";
-    }
-    else {
-        return "Your selection is out of range!";
-    }
-
-
-const buttons = document.querySelector("#btns");
-const printCon = document.querySelector(".printContent");
-
-function getHumanChoice(event){
-    let targets = event.target;
-
-    switch(targets.id) {
-        case "rock":
-            humanChoice =  "rock";
-            break;
-        
-        case "paper":
-            humanChoice = "paper";
-            break;
-
-        case "scissors":
-            humanChoice = "scissors";
-            break;
-    }
-    printCon.textContent = `You chose ${humanChoice}`;
-    
-}
-
-
-buttons.addEventListener("click", getHumanChoice);
-
-
-
-
 
 // Declare score player variables.
 let humanScore = 0;
@@ -163,11 +89,39 @@ function getHumanChoice(event){
         return humanChoice;
         
   }
+const text = document.querySelector(".playText");
+const scores = document.querySelector(".result");
+
+let humanScore = 0;
+let computerScore = 0;
 
 function playRound(event) {
     const humanChoice = getHumanChoice(event);
     const computerChoice = getComputerChoice();
     printCon.textContent = `Computer chose: ${computerChoice} You chose: ${humanChoice}`;
+
+    
+
+    if (humanChoice === computerChoice) {
+        text.textContent = "Its a draw";
+        return "draw";
+    }
+
+    if ((humanChoice === "rock" && computerChoice === "scissors") || 
+       (humanChoice === "paper" && computerChoice === "rock") ||
+       (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        humanScore++;
+        text.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
+        
+    }
+    else {
+        computerScore++;
+        text.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
+        
+    }
+    return scores.textContent = `Computer: ${computerScore}  Human:${humanScore}`
+
 }
 
 buttons.addEventListener('click', playRound);

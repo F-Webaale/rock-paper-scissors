@@ -1,5 +1,5 @@
 console.log("Hello World!");
-
+/*
 // Function should return "paper" or "rock" or "scissors"
 // Fuction for computers choice is random
 // let choice range between 0, 1 and 2
@@ -10,14 +10,15 @@ function getComputerChoice(choice) {
     choice = Math.floor(Math.random() * 3);
 
     if (choice === 0) {
-        return "rock";
+        computerChoice = "rock";
     }
     else if (choice === 1) {
-        return "paper";
+        computerChoice = "paper";
     }
     else {
-        return "scissors";
+        computerChoice = "scissors";
     }
+    printCon.textContent = `Computers choice: ${computerChoice}`;
 }
 
 
@@ -42,32 +43,38 @@ function getComputerChoice(choice) {
     else {
         return "Your selection is out of range!";
     }
-}*/
+
 
 const buttons = document.querySelector("#btns");
+const printCon = document.querySelector(".printContent");
 
 function getHumanChoice(event){
-    let target = event.target;
-    switch(target.id) {
+    let targets = event.target;
+
+    switch(targets.id) {
         case "rock":
-            console.log("rock");
+            humanChoice =  "rock";
             break;
         
         case "paper":
-            console.log("paper");
+            humanChoice = "paper";
             break;
 
         case "scissors":
-            console.log("scissors");
+            humanChoice = "scissors";
             break;
     }
+    printCon.textContent = `You chose ${humanChoice}`;
+    
 }
 
 
 buttons.addEventListener("click", getHumanChoice);
 
 
-/*
+
+
+
 // Declare score player variables.
 let humanScore = 0;
 let computerScore = 0;
@@ -78,10 +85,15 @@ let computerScore = 0;
 // If choice is rock, paper, scissors :Each options has 3 choices, win, draw and loose;
 // Increment the side that has won : Print value and output "You win! Scissors beats paper."
 
+
 function playRound(humanChoice, computerChoice) {
 
-    humanChoice = getHumanChoice();
-    computerChoice = getComputerChoice();
+
+
+
+//let me try mergr into one button
+    humanChoice = getHumanChoice(Event);
+    computerChoice = getComputerChoice(Event);
 
     // choices picked
     console.log(`Computer choice: ${computerChoice}`);
@@ -110,38 +122,53 @@ function playRound(humanChoice, computerChoice) {
 
 console.log("ROUND 1")
 playRound();
-
-// Play 5 rounds of the game
-// Declare a funcion: playGame;
-// The function needs to call playround 5 times
-
-function playGame() {
-    
-    console.log("ROUND 2");
-    playRound();
-
-    console.log("ROUND 3");
-    playRound()
-
-    console.log("ROUND 4");
-    playRound()
-
-    console.log("ROUND 5");
-    playRound()
-}
-
-playGame();
-
-console.log(
-    `FINAL SCORE /n Your score: ${humanScore} Computer score:${computerScore}`
-)
-
-if (humanScore > computerScore) {
-        console.log("You win");
-}
-else {
-    console.log("Computer Wins! Try again, next time");
-}
-
-
 */
+const buttons = document.querySelector("#btns");
+const printCon = document.querySelector(".printContent");
+
+    
+function getComputerChoice(choice) {
+
+        choice = Math.floor(Math.random() * 3);
+        let computerChoice;
+        if (choice === 0) {
+            computerChoice = "rock";
+        }
+        else if (choice === 1) {
+            computerChoice = "paper";
+        }
+        else {
+            computerChoice = "scissors";
+        }
+        return computerChoice;
+}
+
+function getHumanChoice(event){
+        let targets = event.target;
+        let humanChoice;
+        switch(targets.id) {
+            case "rock":
+                humanChoice =  "rock";
+                break;
+            
+            case "paper":
+                humanChoice = "paper";
+                break;
+    
+            case "scissors":
+                humanChoice = "scissors";
+                break;
+        }
+        
+        return humanChoice;
+        
+  }
+
+function playRound(event) {
+    const humanChoice = getHumanChoice(event);
+    const computerChoice = getComputerChoice();
+    printCon.textContent = `Computer chose: ${computerChoice} You chose: ${humanChoice}`;
+}
+
+buttons.addEventListener('click', playRound);
+

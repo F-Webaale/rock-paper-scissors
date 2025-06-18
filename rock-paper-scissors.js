@@ -45,6 +45,12 @@ const scores = document.querySelector(".result");
 
 let humanScore = 0;
 let computerScore = 0;
+let roundsPlayed= 0;
+let maxRounds = 5;
+
+const parent = document.querySelector("#btns");
+const para = document.createElement("p");
+parent.appendChild(para);
 
 function playRound(event) {
     const humanChoice = getHumanChoice(event);
@@ -58,7 +64,7 @@ function playRound(event) {
         return "draw";
     }
 
-    if ((humanChoice === "rock" && computerChoice === "scissors") || 
+    else if ((humanChoice === "rock" && computerChoice === "scissors") || 
        (humanChoice === "paper" && computerChoice === "rock") ||
        (humanChoice === "scissors" && computerChoice === "paper")
     ) {
@@ -66,14 +72,28 @@ function playRound(event) {
         text.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
         
     }
+
+
     else {
         computerScore++;
         text.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
         
     }
-    return scores.textContent = `Computer: ${computerScore}  Human:${humanScore}`
+    scores.textContent = `Computer: ${computerScore}  Human:${humanScore} Rounds PLayed:${++roundsPlayed}`;
+
+    if (roundsPlayed === maxRounds) {
+
+        if(humanScore > computerScore) {
+            return para.textContent = `Game Over: You win.` 
+        }
+        else {
+            return para.textContent = `Game Over: Computer wins.`   
+        }
+    }
 
 }
 
 buttons.addEventListener('click', playRound);
+
+
 
